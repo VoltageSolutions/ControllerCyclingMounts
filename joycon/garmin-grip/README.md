@@ -145,4 +145,7 @@ Rail and cleat fit (clearances, detents) are set in `lib/joycon_rail.scad` and
 - **Cleat:** the first cleat test (v2) dropped into the mount but would not
   turn (the flat-printed lugs sagged). The revised cleat, with sloped lug
   undersides and printed standing up like the grip, twists in and clicks.
+- **Mount clearance:** on a low, aero out-front mount (Trek Blendr), the
+  standard grip can't twist past the stem. The aero swing test clears it, so
+  use `joycon_garmin_grip_aero` for mounts like that.
 - Only fits original Switch Joy-Cons, not Joy-Con 2.
