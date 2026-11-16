@@ -19,8 +19,7 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
 
 | | Mount | Attaches to | Status |
 | --- | --- | --- | --- |
-| ![](joycon/garmin-grip/images/grip_top.png) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: rail and cleat fit tests passed |
-| ![](joycon/handlebar-mount/images/preview_iso.png) | [**Handlebar mount**](joycon/handlebar-mount/): one Joy-Con per side (print two), like Zwift Play | Strapped to the bar tops with zip ties | Prototype |
+| ![](joycon/garmin-grip/images/grip_top.png) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: fit tests passed, aero version tested on a bike |
 
 ## Download or build
 
@@ -43,7 +42,6 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
 joycon/              Nintendo Joy-Con (original Switch)
   fit-tests/           Rail and Garmin cleat tests: print these first
   garmin-grip/         Two Joy-Cons on a Garmin quarter-turn cleat
-  handlebar-mount/     One Joy-Con per side, clamped to the bar
 lib/                 Shared OpenSCAD code (Joy-Con rail, Garmin cleat)
 assets/              Logo SVG
 docs/                Design notes and measured dimensions

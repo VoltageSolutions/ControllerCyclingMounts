@@ -84,8 +84,9 @@ on a single-colour printer. Release files: `joycon_garmin_grip_logo_inlay.stl`
 
 ![logo inlay](images/logo_inlay.png)
 
-1. Print the letters flat in the contrasting colour. They print face up;
-   top-surface ironing gives them a smoother face.
+1. Print the letters flat in the contrasting colour. They print face up, and
+   top-surface ironing gives them a smoother face. The letters are small, so
+   add a brim (or skip ironing) to keep them from lifting off the plate.
 2. While they're still on the plate, press a strip of masking or painter's
    tape over all of them, then peel the tape off: the letters come with it,
    already spaced correctly.
@@ -146,6 +147,9 @@ Rail and cleat fit (clearances, detents) are set in `lib/joycon_rail.scad` and
   turn (the flat-printed lugs sagged). The revised cleat, with sloped lug
   undersides and printed standing up like the grip, twists in and clicks.
 - **Mount clearance:** on a low, aero out-front mount (Trek Blendr), the
-  standard grip can't twist past the stem. The aero swing test clears it, so
-  use `joycon_garmin_grip_aero` for mounts like that.
+  standard grip can't twist past the stem. The aero grip is tested on that
+  mount: the empty grip twists in and locks, then the Joy-Cons slide in and
+  work. Use `joycon_garmin_grip_aero` for mounts like that.
+- **Logo inlay:** on the first test print, ironing knocked some of the small
+  letters off the plate. A brim is being tested.
 - Only fits original Switch Joy-Cons, not Joy-Con 2.

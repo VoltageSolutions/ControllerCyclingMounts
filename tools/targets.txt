@@ -30,11 +30,3 @@ joycon/garmin-grip/joycon_garmin_grip.scad | logo_inlay         | png     | part
 # ---- Joy-Con fit tests ---------------------------------------------------------
 joycon/fit-tests/joycon_rail_test.scad  | joycon_rail_test  | stl,3mf,png | | 0,0,0,55,0,25,90
 joycon/fit-tests/garmin_cleat_test.scad | garmin_cleat_test | stl,3mf,png | | 0,0,0,55,0,25,110
-
-# ---- Joy-Con handlebar mount (prototype) ---------------------------------
-# One part fits both sides: print two, flip one over for the right bar.
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount | stl,3mf | part="mount" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | preview_iso          | png | part="preview"                    | 0,30,0,55,0,215,330 | preview
-joycon/handlebar-mount/joycon_handlebar_mount.scad | preview_top          | png | part="preview"                    | 0,30,0,0,0,0,330   | preview
-joycon/handlebar-mount/joycon_handlebar_mount.scad | mount_detail         | png | part="mount";print_orient=false   | 0,30,0,55,0,215,200
-joycon/handlebar-mount/joycon_handlebar_mount.scad | print_orientation    | png | part="mount"                      | 0,0,0,70,0,30,260
