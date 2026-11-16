@@ -1,0 +1,90 @@
+# CD: runs when changes land on main. If VERSION has not been released yet,
+# builds every model and publishes a GitHub Release vX.Y.Z with the files.
+# If that version already exists, it does nothing.
+name: CD Workflow
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+  workflow_dispatch:
+
+concurrency:
+  group: cd
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      skip: ${{ steps.v.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read version
+        id: v
+        run: |
+          version="$(tr -d '[:space:]' < VERSION)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/v${version}" > /dev/null; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice title=No release::v${version} already exists; nothing to publish."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install OpenSCAD
+        if: steps.v.outputs.skip != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad
+
+      - name: Build
+        if: steps.v.outputs.skip != 'true'
+        run: |
+          NO_IMAGES=1 bash tools/build.sh
+          python3 tools/bundle.py --all
+          cp assets/voltage_wordmark.svg build/
+          (cd build && sha256sum * > SHA256SUMS.txt)
+
+      - name: Upload release files
+        if: steps.v.outputs.skip != 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: release
+          path: build/*
+          if-no-files-found: error
+
+  release:
+    name: Publish GitHub Release
+    needs: build
+    if: needs.build.outputs.skip != 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.build.outputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: release
+          path: release
+
+      - name: Create release
+        run: |
+          gh release create "v${VERSION}" release/* \
+            --repo "${{ github.repository }}" \
+            --target "${{ github.sha }}" \
+            --title "v${VERSION}" \
+            --generate-notes \
+            --notes "Ready-to-print STL and 3MF files, oriented for printing. Start with the fit tests; see the README for which files you need. The *_bundled.scad files are single-file versions for MakerWorld's customizer (upload voltage_wordmark.svg with them, or set logo = false)."

@@ -1,0 +1,64 @@
+# CI: runs on every pull request. Builds every model with OpenSCAD to check
+# that the source opens and renders without warnings. Never publishes anything.
+name: CI Workflow
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install OpenSCAD
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad
+          openscad --version
+
+      - name: Build STL and 3MF
+        run: NO_IMAGES=1 bash tools/build.sh
+
+      - name: Build single-file versions
+        run: python3 tools/bundle.py --all
+
+      - name: Upload models (for checking, not a release)
+        uses: actions/upload-artifact@v7
+        with:
+          name: models
+          path: build/
+          if-no-files-found: error
+
+  version:
+    name: Version check
+    if: github.base_ref == 'main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: VERSION must be new and higher than the latest release
+        run: |
+          version="$(tr -d '[:space:]' < VERSION)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error file=VERSION::VERSION must look like 1.2.3 (got '$version')"; exit 1; }
+          if git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then
+            echo "::error file=VERSION::v$version is already released. Raise VERSION before merging to main."; exit 1
+          fi
+          latest="$(git tag -l 'v*' | sed 's/^v//' | sort -V | tail -1)"
+          if [[ -n "$latest" && "$(printf '%s\n%s\n' "$latest" "$version" | sort -V | tail -1)" != "$version" ]]; then
+            echo "::error file=VERSION::VERSION $version is lower than the latest release v$latest."; exit 1
+          fi
+          echo "Merging this pull request will release v$version." >> "$GITHUB_STEP_SUMMARY"

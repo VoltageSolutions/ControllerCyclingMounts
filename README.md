@@ -2,8 +2,8 @@
 
 3D-printable mounts that put ordinary game controllers on a bike, so you can
 use them for shifting and steering in Zwift on an indoor trainer. They are the
-hardware side of a separate Windows app (another repository) that connects
-standard game controllers to Zwift.
+hardware side of [Game Controller for Zwift](https://github.com/VoltageSolutions/GameControllerForZwift),
+a Windows app that connects standard game controllers to Zwift.
 
 Every model is **OpenSCAD source**: use it as is, change the settings, or build
 your own mounts on the shared rail and cleat code.
@@ -62,24 +62,19 @@ lib/                 Shared OpenSCAD code (Joy-Con rail, Garmin cleat)
 assets/              Logo SVG
 docs/                Design notes and measured reference dimensions
 tools/               build.sh, bundle.py, targets.txt
-.github/workflows/   Builds every model; tagged versions become releases
+.github/workflows/   CI builds every model on pull requests; merges to main release
 ```
 
 Each mount folder has its `.scad` source, a README and preview images. STL and
 3MF files are build output: they are not committed, they are attached to
 releases.
 
-## Publishing a release (maintainers)
+## Releases
 
-Tag a version and push it; GitHub Actions builds every model and attaches the
-files to a new release:
-
-```
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-Pushes and pull requests run the same build as a check.
+The version lives in the `VERSION` file. Merging a pull request into `main`
+with a new version builds every model and publishes a GitHub Release with all
+the STL/3MF files. Pull requests only build, as a check. Details in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Credits
 
@@ -95,17 +90,15 @@ measurements were taken: no third-party meshes or code are included here.
 
 Measured values and design reasoning: [docs/design-notes.md](docs/design-notes.md).
 
-## Contributing
+## Contributing and support
 
-Issues and pull requests are welcome, especially fit reports (printer,
-material, which settings you changed) and mounts for other controllers.
+Fit reports, ideas, bug reports and pull requests are welcome. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for what to include and how changes are
+built and released, and please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-- Put each controller in its own top-level folder, with a `fit-tests/` folder
-  if it needs one.
-- Put reusable geometry in `lib/` with a clear local coordinate frame.
-- Keep a design's settings at the top of its file, in Customizer sections.
-- Add new printable parts to `tools/targets.txt` so releases include them.
-- Don't commit STL/3MF files or third-party meshes.
+### Donate
+
+Support this project on [ko-fi](https://ko-fi.com/voltagesolutions)!
 
 ## License
 
@@ -119,3 +112,5 @@ The VOLTAGE wordmark (`assets/voltage_wordmark.svg`, and the logo recessed into
 some designs) is a trademark of Voltage Solutions LLC and is not covered by
 this license. If you share or sell your own version of a design, set
 `logo = false` in the Customizer or replace `logo_file` with your own logo.
+
+This is an AI-assisted project, leveraging support from Anthropic's Claude.
