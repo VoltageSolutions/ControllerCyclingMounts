@@ -2,8 +2,8 @@
 // Nintendo Switch (1) Joy-Con female rail
 // Part of ControllerCyclingMounts.  Use with:  use <../../lib/joycon_rail.scad>
 //
-// Profile measured from the community "Joycon Grip w/ Front Look LED
-// Window" model and confirmed by test print (fits Switch 1 Joy-Cons).
+// Fit-tested with Switch 1 Joy-Cons: slides on smoothly and the latch
+// clicks. Dimensions: docs/design-notes.md.
 // NOT compatible with Joy-Con 2 (magnetic attachment).
 //
 // Local frame for all modules here:

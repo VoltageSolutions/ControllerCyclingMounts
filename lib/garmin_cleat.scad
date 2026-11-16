@@ -2,9 +2,8 @@
 // Garmin-style quarter-turn cleat (male, "device side")
 // Part of ControllerCyclingMounts.  Use with:  use <../../lib/garmin_cleat.scad>
 //
-// Dimensions measured from community cleats (DiTEC case,
-// ReverseGarminCustom, Shiny Allis-Bojo) which share the same
-// geometry within ~0.2 mm.
+// Fit-tested on a Garmin-compatible quarter-turn mount: drops in,
+// twists a quarter turn, and clicks. Dimensions: docs/design-notes.md.
 //
 // Built pointing up (+Z) from z = 0, which is the surface it sits on.
 // Lugs lie along X when angle = 0.
@@ -12,12 +11,12 @@
 // v2 changes (after the first test print would drop in but not twist):
 //   - lug undersides are chamfered: the gap for the mount's lip is
 //     neck_h (1.5) at the neck and neck_h + lug_chamfer (1.95) at the
-//     lug tip, like the DiTEC reference. This also removes the flat
+//     lug tip. This also removes the flat
 //     1.8 mm overhang that sagged when the cleat was printed flat.
 //   - the side edges of each lug are chamfered underneath
 //     (lug_lead_in) so the mount's lip slides under easily.
 //   - lugs are thicker at the root (lug_t 1.85) so the outer face sits
-//     3.35 mm above the seat, as on the reference cleats.
+//     3.35 mm above the seat.
 // ============================================================
 
 // Outer face height of the cleat above its mounting surface

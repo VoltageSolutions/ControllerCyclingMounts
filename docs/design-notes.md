@@ -1,8 +1,7 @@
 # Design notes
 
-Measured reference dimensions, library conventions, and lessons learned. The
-current defaults live in the library files. This page records where they came
-from.
+Key dimensions, library conventions, and lessons learned. The current
+defaults live in the library files. This page explains what they are and why.
 
 ## Coordinate conventions
 
@@ -28,9 +27,8 @@ from.
 
 ## Joy-Con rail (Switch 1)
 
-Measured from the community *Joycon Grip w/ Front Look LED Window* by
-slicing its rail perpendicular to the rail direction. It matched our test
-print, which fits well.
+The female channel the Joy-Con's metal rail slides into. These values passed
+the rail fit test: the Joy-Con slides on smoothly and the latch clicks.
 
 | Feature | Value |
 | --- | --- |
@@ -42,35 +40,36 @@ print, which fits well.
 | Latch notch | both lips, 10.0–15.5 mm from the open end |
 | Body thickness around the rail | 14.0 mm, rail centred |
 
-Our first attempt (from the Cuttlephone project) was 7.2 / 0.70 / 9.7 /
-2.45 mm and was slightly tight.
+An earlier version at 7.2 / 0.70 / 9.7 / 2.45 mm worked but was slightly
+tight.
 
 ## Grip layout
-
-From the same reference grip:
 
 - Each Joy-Con is splayed **15°** outward.
 - The rail faces are **40 mm** apart at the converging (shoulder) end.
 - Legs are ~15 mm wide. Non-rail edges are rounded to ~4 mm. The rail faces
   stay square.
+- This puts the sticks and buttons in a comfortable, gamepad-like position.
 
 ## Garmin quarter-turn cleat
 
-Three community cleats were measured with top-down height maps and
-horizontal slices. *DiTec case + Garmin connection* and *ReverseGarminCustomv2*
-use an identical cleat, and *Shiny Allis-Bojo* is within ~0.2 mm of them.
+The male cleat that twists into a Garmin-compatible mount. These values passed
+the cleat fit test on a Trek Blendr mount: the cleat drops in, twists a quarter
+turn, and clicks.
 
-| Feature | DiTEC / Reverse | Shiny Allis-Bojo |
-| --- | --- | --- |
-| Neck diameter | 24.9 mm | 25.0 mm |
-| Gap under the lugs (seat → lug underside) | 1.5 mm at the neck, ~1.95 mm at the tip (underside sloped) | ~1.55 mm, flat |
-| Lug tip-to-tip | ~28.6 mm (tips on a 14.3 mm radius) | ~28.2 mm |
-| Lug width | ~11 mm | ~11 mm |
-| Lug layer thickness | 1.35 mm + 0.45 mm underside slope | 1.7 mm |
-| Lug tip notch | ~2.5 mm wide, ~0.4 mm deep | similar |
-| Seat (base) diameter | 32.4 mm | 35 mm tapering to 32.2 mm |
+| Feature | Value |
+| --- | --- |
+| Seat (pedestal) diameter | 33 mm |
+| Neck diameter | 24.9 mm |
+| Gap under the lugs (seat → lug underside) | 1.5 mm at the neck, ~1.95 mm at the tip (underside sloped) |
+| Lug tip-to-tip | 28.6 mm (tips on a 14.3 mm radius) |
+| Lug width | 11 mm |
+| Lug thickness | 1.85 mm at the root |
+| Outer face above the seat | 3.35 mm |
+| Lug tip notch | ~2.5 mm wide, ~0.4 mm deep |
 
-**Detents on the outer face.** All the references have both features:
+**Detents on the outer face.** The cleat needs both of these to work with the
+mount's spring clips:
 
 - **Grooves along the lugs:** tapered wedges from r ≈ 4 mm (≈1 mm wide) to
   r ≈ 12 mm (≈2.8 mm wide), ≈1 mm deep. The mount's plastic springs drop in
@@ -93,10 +92,10 @@ use an identical cleat, and *Shiny Allis-Bojo* is within ~0.2 mm of them.
   doesn't click or hold.
 - **Lug undersides are a critical overhang.** On the first cleat test (printed
   flat), the flat 1.8 mm lug overhang sagged, and the cleat dropped in but
-  wouldn't twist. The reference cleats slope the lug underside (more gap at the
-  tip), and our mounts print the cleat sideways, so that face is no longer an
-  overhang.
+  wouldn't twist. The lug undersides are now sloped (more gap at the tip), and
+  our mounts print the cleat sideways, so that face is no longer an overhang.
 - **Test pieces should print the way the real part does**, or a pass doesn't
   carry over to the real part.
-- **Mesh references are fine for measuring.** Slicing STL/3MF files
-  perpendicular to a feature recovers profiles to ~0.05 mm.
+- **Check the twist, not just the fit.** A cleat that clicks in can still be
+  blocked by the bar or stem while it turns. See the clearance check and swing
+  test in the Garmin grip's README.
