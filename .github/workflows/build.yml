@@ -1,0 +1,50 @@
+# Builds every model with OpenSCAD.
+#  - On pushes and pull requests: checks that everything renders cleanly and
+#    uploads the STL/3MF files as a workflow artifact (for testing).
+#  - On a version tag (v*): also creates a GitHub Release with the files attached.
+#
+# To publish a release:  git tag v1.0.0 && git push origin v1.0.0
+name: Build models
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to create releases on tags
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install OpenSCAD
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad
+          openscad --version
+
+      - name: Build STL and 3MF
+        run: NO_IMAGES=1 bash tools/build.sh
+
+      - name: Build single-file versions (for MakerWorld's customizer)
+        run: |
+          python3 tools/bundle.py --all
+          cp assets/voltage_wordmark.svg build/
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: models
+          path: build/
+
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*
+          generate_release_notes: true
