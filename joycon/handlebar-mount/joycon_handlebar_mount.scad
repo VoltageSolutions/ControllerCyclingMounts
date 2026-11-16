@@ -5,8 +5,9 @@
 // toward the hood. The mount clamps onto the bar tops near the bend
 // and a rail beam runs forward from the clamp.
 //
-//   side = "left"  -> mounts on the LEFT bar, holds the RIGHT Joy-Con
-//   side = "right" -> mounts on the RIGHT bar, holds the LEFT Joy-Con
+// One part fits both sides: print two. Installed as modelled, it goes
+// on the LEFT bar and holds the RIGHT Joy-Con. Turned upside down, the
+// same part goes on the RIGHT bar and holds the LEFT Joy-Con.
 //
 // Orientation (as mounted, rider's view):
 //   +X = toward the stem (inboard) on the left bar
@@ -16,16 +17,12 @@
 //   closed end of the rail, near the clamp.
 //   Pitch is set by rotating the clamp on the bar before tightening.
 //
-// Clamp styles:
-//   "strap" one-piece saddle; hold it on with zip ties, velcro, or
-//           Garmin-style rubber O-rings through the two strap channels
-//   "bolt"  two-piece split clamp, 2x M4 bolts + nuts (side-loaded
-//           nut slots); optional printed TPU shim for smaller bars
+// Clamp: a one-piece saddle held on with zip ties (or narrow velcro,
+//        or Garmin-style rubber O-rings) through two strap channels.
 //
 // Print: the mount stands on the FRONT end of the rail beam, so the
 //        rail runs vertically (like the grip) and nothing floats.
-//        No supports. The bolt cap and TPU shim print standing on an
-//        end face.
+//        No supports.
 //
 // Part of ControllerCyclingMounts. Rail comes from ../../lib.
 // NOT for Joy-Con 2 (magnetic attachment).
@@ -34,9 +31,7 @@
 use <../../lib/joycon_rail.scad>
 
 /* [What to render] */
-part = "mount"; // [mount, cap, shim, preview]
-side = "left";  // [left, right]
-clamp_style = "strap"; // [strap, bolt]
+part = "mount"; // [mount, preview]
 print_orient = true;   // orient the part for printing
 
 /* [Handlebar] */
@@ -47,7 +42,9 @@ clamp_x_offset = 0;  // shift the clamp along the bar (- = outboard)
 
 /* [Joy-Con position] */
 rail_forward = 0;    // extra gap between bar and Joy-Con (mm)
-rail_dz      = 0;    // raise (+) / lower (-) the Joy-Con relative to the bar centre
+rail_dz      = 0;    // raise (+) / lower (-) the Joy-Con relative to the bar centre.
+                     // Not symmetric: the part flipped for the other side has
+                     // the opposite offset. Leave at 0 to use one part for both.
 yaw          = 0;    // deg; + turns the front of the Joy-Con outboard, toward the hood
 beam_w       = 8;    // rail beam width (rail depth is 3.2 mm)
 end_cap      = 6;    // solid end of the rail behind the Joy-Con
@@ -60,15 +57,6 @@ strap_t      = 3.0;  // channel depth
 strap_x      = [-11.5, -19.5]; // channel centres, relative to the rail face
 liner_t      = 0;    // room for a rubber liner inside the saddle (0 = none)
 
-/* [Bolt clamp] */
-bolt_d       = 4.4;  // M4 clearance
-nut_af       = 7.3;  // M4 nut across flats + clearance
-nut_t        = 3.4;
-head_d       = 7.6;  // M4 socket head + clearance
-clamp_gap    = 1.0;  // gap between the halves, so the bolts can squeeze
-cap_ear_h    = 10;   // ear depth on the cap
-shim_t       = 1.0;  // TPU shim thickness: fits a bar 2*shim_t smaller than bar_d
-
 $fn = 72;
 eps = 0.01;
 T   = 14;            // Joy-Con thickness at the rail
@@ -76,15 +64,12 @@ JC_RAIL = 92.5;
 CD  = joycon_rail_depth();
 
 Lb  = end_cap + JC_RAIL;                     // beam length
-R_in  = bar_d/2 + (clamp_style == "strap" ? 0.25 + liner_t : 0);
+R_in  = bar_d/2 + 0.25 + liner_t;
 R_out = R_in + clamp_wall;
 y_closed = bar_d/2 + jc_clear + jc_tail + rail_forward; // closed end of the rail
 y_b = y_closed - end_cap;                    // rear of the beam
 cx0 = -clamp_w + clamp_x_offset;             // clamp spans x = cx0 .. cx0 + clamp_w
 cx1 = cx0 + clamp_w;
-z_b = R_in + 3.2;                            // bolt axis distance from bar centre
-bolt_x = (cx0 + cx1) / 2;
-ear_out = z_b + 6;
 
 // ---------- beam ------------------------------------------------
 module beam_place() {
@@ -132,42 +117,6 @@ module web() {
     hull() {
         front_arc();
         beam_place() beam_solid(len = gusset_len);
-        if (clamp_style == "bolt") front_ears();
-    }
-}
-
-// ears for the bolt clamp, beam half (flat top on the split face;
-// the web hull runs from them down to the beam)
-module front_ears() {
-    for (s = [-1, 1]) mirror([0, 0, s < 0 ? 1 : 0])
-        translate([cx0, clamp_gap/2, R_in - 1]) cube([clamp_w, nut_t + 5, ear_out - R_in + 1]);
-}
-
-module front_ear_cuts() {
-    for (s = [-1, 1]) mirror([0, 0, s < 0 ? 1 : 0]) {
-        // bolt hole
-        translate([bolt_x, -1, z_b]) rotate([-90, 0, 0]) cylinder(d = bolt_d, h = 30, $fn = 32);
-        // side-loaded nut slot
-        translate([bolt_x - nut_af/2, clamp_gap/2 + 2.5, z_b - nut_af * 0.5774])
-            cube([nut_af, nut_t, 20]);
-    }
-}
-
-module cap_body() {
-    difference() {
-        union() {
-            intersection() {
-                bar_cyl(R_out);
-                translate([cx0 - 1, -R_out - 1, -R_out - 1]) cube([clamp_w + 2, R_out + 1 - clamp_gap/2, 2 * R_out + 2]);
-            }
-            for (s = [-1, 1]) mirror([0, 0, s < 0 ? 1 : 0])
-                translate([cx0, -cap_ear_h, R_in - 1]) cube([clamp_w, cap_ear_h - clamp_gap/2, ear_out - R_in + 1]);
-        }
-        bar_cyl(R_in, cx0 - 1, clamp_w + 2);
-        for (s = [-1, 1]) mirror([0, 0, s < 0 ? 1 : 0]) {
-            translate([bolt_x, -cap_ear_h - 1, z_b]) rotate([-90, 0, 0]) cylinder(d = bolt_d, h = cap_ear_h + 2, $fn = 32);
-            translate([bolt_x, -cap_ear_h - 1, z_b]) rotate([-90, 0, 0]) cylinder(d = head_d, h = cap_ear_h - 4.5 + 1, $fn = 32);
-        }
     }
 }
 
@@ -175,38 +124,22 @@ module cap_body() {
 module mount_left() {
     difference() {
         union() {
-            front_shell(clamp_style == "bolt" ? clamp_gap/2 : 0);
+            front_shell(0);
             web();
             beam_place() beam_solid();
-            if (clamp_style == "bolt") front_ears();
         }
         // the bar
         bar_cyl(R_in, cx0 - 50, clamp_w + 100);
-        // nothing behind the bar centre (strap) / the split (bolt)
-        translate([cx0 - 60, -100 + (clamp_style == "bolt" ? clamp_gap/2 : 0), -100])
-            cube([clamp_w + 120, 100, 200]);
+        // nothing behind the bar centre
+        translate([cx0 - 60, -100, -100]) cube([clamp_w + 120, 100, 200]);
         // rail
         beam_place() joycon_rail_channel(len = Lb, rail_len = JC_RAIL, end_slope = 1);
         // strap channels: a band just outside the shell, all the way round
-        if (clamp_style == "strap")
-            for (x = strap_x) difference() {
-                bar_cyl(R_out + strap_t, x - strap_w/2, strap_w);
-                bar_cyl(R_out - eps, x - strap_w/2 - 1, strap_w + 2);
-            }
-        if (clamp_style == "bolt") front_ear_cuts();
+        for (x = strap_x) difference() {
+            bar_cyl(R_out + strap_t, x - strap_w/2, strap_w);
+            bar_cyl(R_out - eps, x - strap_w/2 - 1, strap_w + 2);
+        }
     }
-}
-
-module shim() {
-    difference() {
-        bar_cyl(R_in);
-        bar_cyl(R_in - shim_t, cx0 - 1, clamp_w + 2);
-        translate([cx0 - 1, -1, 0]) cube([clamp_w + 2, 2, R_out]);   // split
-    }
-}
-
-module sided() {
-    if (side == "right") mirror([1, 0, 0]) children(); else children();
 }
 
 // ---------- print orientation -----------------------------------
@@ -215,14 +148,13 @@ module mount_print() {
     translate([0, 0, Lb]) rotate([-90, 0, 0])
         rotate([0, 0, -yaw]) translate([0, -y_b, -rail_dz]) mount_left();
 }
-// Clamp axis vertical, standing on an end face.
-module axis_up() { rotate([0, 90, 0]) translate([-cx0 - clamp_w, 0, 0]) children(); }
 
 // ---------- preview -----------------------------------------------
+// Shown on the left bar. For the right bar, the same part is turned
+// upside down.
 module preview() {
-    sided() {
+    {
         mount_left();
-        if (clamp_style == "bolt") color("orange") cap_body();
         // stand-in bar: tops plus the bend toward the hood
         color("dimgray") {
             bar_cyl(bar_d/2, cx0 - 5, 120);
@@ -238,12 +170,6 @@ module preview() {
 
 // ---------- dispatch ----------------------------------------------
 if (part == "mount") {
-    if (print_orient) sided() mount_print(); else sided() mount_left();
-}
-else if (part == "cap") {
-    if (print_orient) axis_up() cap_body(); else sided() cap_body();
-}
-else if (part == "shim") {
-    if (print_orient) axis_up() shim(); else sided() shim();
+    if (print_orient) mount_print(); else mount_left();
 }
 else if (part == "preview") preview();

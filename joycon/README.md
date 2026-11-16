@@ -24,7 +24,7 @@ What to look for and which setting to change if a test is tight or loose:
 | | Mount | Attaches to | Status |
 | --- | --- | --- | --- |
 | ![](garmin-grip/images/grip_top.png) | [Garmin grip](garmin-grip/): both Joy-Cons, gamepad style | Any Garmin quarter-turn mount | Ready: rail and cleat fit tests passed |
-| ![](handlebar-mount/images/preview_iso_strap.png) | [Handlebar mount](handlebar-mount/): one Joy-Con per side, like Zwift Play | Bar tops near the bend (strap or bolt clamp) | Prototype |
+| ![](handlebar-mount/images/preview_iso.png) | [Handlebar mount](handlebar-mount/): one Joy-Con per side (print two), like Zwift Play | Bar tops near the bend, held with zip ties | Prototype |
 
 **Garmin grip:** check that it can twist on your mount before printing. It
 is much bigger than a bike computer: see

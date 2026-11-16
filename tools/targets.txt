@@ -32,9 +32,9 @@ joycon/fit-tests/joycon_rail_test.scad  | joycon_rail_test  | stl,3mf,png | | 0,
 joycon/fit-tests/garmin_cleat_test.scad | garmin_cleat_test | stl,3mf,png | | 0,0,0,55,0,25,110
 
 # ---- Joy-Con handlebar mount (prototype) ---------------------------------
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_left_strap | stl,3mf | part="mount";side="left";clamp_style="strap" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_left_bolt | stl,3mf | part="mount";side="left";clamp_style="bolt" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_right_strap | stl,3mf | part="mount";side="right";clamp_style="strap" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_right_bolt | stl,3mf | part="mount";side="right";clamp_style="bolt" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_bolt_cap | stl,3mf | part="cap";clamp_style="bolt" |
-joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount_tpu_shim | stl,3mf | part="shim";clamp_style="bolt" |
+# One part fits both sides: print two, flip one over for the right bar.
+joycon/handlebar-mount/joycon_handlebar_mount.scad | joycon_handlebar_mount | stl,3mf | part="mount" |
+joycon/handlebar-mount/joycon_handlebar_mount.scad | preview_iso          | png | part="preview"                    | 0,30,0,55,0,215,330 | preview
+joycon/handlebar-mount/joycon_handlebar_mount.scad | preview_top          | png | part="preview"                    | 0,30,0,0,0,0,330   | preview
+joycon/handlebar-mount/joycon_handlebar_mount.scad | mount_detail         | png | part="mount";print_orient=false   | 0,30,0,55,0,215,200
+joycon/handlebar-mount/joycon_handlebar_mount.scad | print_orientation    | png | part="mount"                      | 0,0,0,70,0,30,260

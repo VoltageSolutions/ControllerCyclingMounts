@@ -20,7 +20,7 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
 | | Mount | Attaches to | Status |
 | --- | --- | --- | --- |
 | ![](joycon/garmin-grip/images/grip_top.png) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: rail and cleat fit tests passed |
-| ![](joycon/handlebar-mount/images/preview_iso_strap.png) | [**Handlebar mount**](joycon/handlebar-mount/): one Joy-Con per side, like Zwift Play | Clamps to the bar tops (strap or bolt clamp) | Prototype |
+| ![](joycon/handlebar-mount/images/preview_iso.png) | [**Handlebar mount**](joycon/handlebar-mount/): one Joy-Con per side (print two), like Zwift Play | Strapped to the bar tops with zip ties | Prototype |
 
 ## Download or build
 
