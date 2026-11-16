@@ -14,7 +14,7 @@ full mount:
 | Test | Checks |
 | --- | --- |
 | ![](fit-tests/images/joycon_rail_test.png) [Rail test](fit-tests/) | The Joy-Con slides on smoothly and the latch clicks |
-| ![](fit-tests/images/garmin_cleat_test.png) [Cleat test](fit-tests/) | The cleat drops into your Garmin mount, twists and clicks |
+| ![](fit-tests/images/garmin_cleat_test.png) [Cleat test](fit-tests/) | The cleat drops into your Garmin mount, twists, and clicks |
 
 What to look for and which setting to change if a test is tight or loose:
 [fit-tests/README.md](fit-tests/README.md).

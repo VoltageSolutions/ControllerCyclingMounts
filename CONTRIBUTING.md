@@ -1,15 +1,19 @@
 # Contributing
 
-Thank you for helping. Fit reports, ideas, bug reports and pull requests are
-all welcome.
+Thank you for helping. Fit reports, problem reports, ideas, and pull requests
+are all welcome.
 
-## Fit reports, ideas and problems
+## Fit reports, problems, and ideas
 
 Post to the [Issues page](https://github.com/VoltageSolutions/ControllerCyclingMounts/issues).
 
 - **Fit reports** are the most useful thing you can send, good or bad. Include
   your printer, nozzle size, material, slicer profile, which file you printed,
   and any Customizer settings you changed. A photo helps.
+- **Something wrong with a part?** A part that won't print cleanly, doesn't
+  fit the controller, or doesn't assemble or work the way its README says is
+  a problem report. Include the same details as a fit report, plus what went
+  wrong, and a photo if you can.
 - **Doesn't fit your bike or mount?** Name the mount (brand and model) and,
   for the Garmin grip, the two measurements described in
   [Fit it to your bike mount](joycon/garmin-grip/README.md#fit-it-to-your-bike-mount-check-before-printing).
@@ -35,10 +39,9 @@ build output and are not committed.
 - **Check your change:** run `tools/build.sh` (or `tools/build.sh <filter>`).
   It must finish with no OpenSCAD warnings, and it refreshes the preview
   images, which you should commit.
-- **No third-party meshes.** Measure and model instead, and credit the models
-  you measured in the README.
+- **No third-party meshes.** Measure and model instead.
 
-## Branches, versions and releases
+## Branches, versions, and releases
 
 - `main` always matches the latest release.
 - Work on a branch and open a pull request against `main`.
@@ -52,12 +55,12 @@ build output and are not committed.
 ## What a pull request needs
 
 CI runs on every pull request: every model must build with no warnings. If
-you change how a mount fits, prints or is assembled, update its README too.
+you change how a mount fits, prints, or is assembled, update its README too.
 
 ## License
 
 By contributing, you agree that your contribution is licensed under
-[CC BY-SA 4.0](LICENSE), like the rest of the project. The VOLTAGE wordmark is
+[CC BY-SA 4.0](LICENSE.md), like the rest of the project. The VOLTAGE wordmark is
 a trademark of Voltage Solutions LLC and is not part of that license; please
 don't add other logos or trademarks to the designs.
 

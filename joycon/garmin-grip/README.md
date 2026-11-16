@@ -84,8 +84,8 @@ on a single-colour printer. Release files: `joycon_garmin_grip_logo_inlay.stl`
 
 ![logo inlay](images/logo_inlay.png)
 
-1. Print the letters flat in the contrasting colour, 0.12–0.16 mm layers.
-   Turn on top-surface ironing for a smooth face (they print face up).
+1. Print the letters flat in the contrasting colour. They print face up;
+   top-surface ironing gives them a smoother face.
 2. While they're still on the plate, press a strip of masking or painter's
    tape over all of them, then peel the tape off: the letters come with it,
    already spaced correctly.
@@ -96,16 +96,10 @@ If the letters are too tight, raise `inlay_clearance` (try 0.15). If they sit
 proud, sand lightly or lower `logo_depth` on the inlay only. Prefer paint?
 Fill the recess with a paint marker and wipe the surface clean instead.
 
-## Print settings
+## Print orientation
 
-- Stands on its **front end** (the exported orientation). The rails then run
-  almost vertically, so the rail lips don't start in mid-air. The cleat sticks
-  out sideways. Its overhangs are short (under 4 mm) and print without
-  supports.
-- No supports. Brim recommended (the footprint is about 40 × 14 mm).
-- PETG or ASA, 0.2 mm layers, 4+ walls, 25 %+ infill.
-- Lightly deburr the rail entrances (on the bed side) if elephant's foot makes
-  them tight.
+The files stand the grip on its **front end**. The rails then run almost
+vertically, so the rail lips don't start in mid-air.
 
 ## Customizer parameters
 

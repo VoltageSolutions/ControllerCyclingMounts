@@ -17,16 +17,15 @@
 //   Pitch is set by rotating the clamp on the bar before tightening.
 //
 // Clamp styles:
-//   "strap" one-piece saddle; hold it on with zip ties, velcro or
+//   "strap" one-piece saddle; hold it on with zip ties, velcro, or
 //           Garmin-style rubber O-rings through the two strap channels
 //   "bolt"  two-piece split clamp, 2x M4 bolts + nuts (side-loaded
 //           nut slots); optional printed TPU shim for smaller bars
 //
 // Print: the mount stands on the FRONT end of the rail beam, so the
 //        rail runs vertically (like the grip) and nothing floats.
-//        Use a brim (8-10 mm) - it is tall and narrow. No supports.
-//        The bolt cap and TPU shim print standing on an end face.
-//        PETG/ASA recommended; 4+ walls, 30%+ infill.
+//        No supports. The bolt cap and TPU shim print standing on an
+//        end face.
 //
 // Part of ControllerCyclingMounts. Rail comes from ../../lib.
 // NOT for Joy-Con 2 (magnetic attachment).

@@ -13,8 +13,7 @@
 //
 // Print: the exported "grip" stands on its front end, like the
 //        popular Joy-Con grips, so the rails run (nearly) vertically
-//        and nothing floats. No supports. A brim helps.
-//        PETG/ASA recommended; 4+ walls, 25%+ infill.
+//        and nothing floats. No supports.
 //
 // Part of ControllerCyclingMounts. Rail and cleat come from ../../lib.
 // Splay and spacing measured from the community "Joycon Grip w/ Front

@@ -46,11 +46,11 @@ A two-piece split clamp. The beam half has two side-loaded M4 nut slots. The rea
 
 ![Bolt clamp](images/mount_bolt_detail.png)
 
-## Printing
+## Print orientation
 
-- **Mount (either style):** stands on the **front end of the rail beam**, with the rail running vertically like the grip. The rail lips never float, and the closed end of the rail is sloped at 45°. The web between the clamp and the beam is shaped so every downward-facing surface is 45° or steeper. The only flat overhangs are short bridges over the strap channels (5.2 mm) and nut slots (7.3 mm). **Use an 8–10 mm brim:** the part is about 115 mm tall on a small footprint.
+- **Mount (either style):** stands on the **front end of the rail beam**, with the rail running vertically like the grip. The rail lips never float, and the closed end of the rail is sloped at 45°. The web between the clamp and the beam is shaped so every downward-facing surface is 45° or steeper. The only flat overhangs are short bridges over the strap channels (5.2 mm) and nut slots (7.3 mm).
 - **Bolt cap and TPU shim:** print standing on an end face (bar axis vertical), no supports.
-- PETG or ASA for the mount, 4+ walls, 30%+ infill. The shim is TPU.
+- The optional shim is meant to be printed in TPU.
 - Checked with a slice-by-slice island test on the exported meshes: no floating regions.
 
 ![Print orientation](images/print_orientation_strap.png)
@@ -94,7 +94,7 @@ A rubber liner (inner tube strip) under the strap saddle helps a lot with rotati
 ## Open questions
 
 - **Bar diameter at your clamp spot**, with tape. 27 mm is a guess for taped tops near the bend.
-- **Hood clearance:** does the beam (8 mm outboard of the Joy-Con) touch the inside of your hood, or the bar where it starts to curve? Adjust with `clamp_x_offset`, `rail_forward`, `rail_dz` and `yaw`.
+- **Hood clearance:** does the beam (8 mm outboard of the Joy-Con) touch the inside of your hood, or the bar where it starts to curve? Adjust with `clamp_x_offset`, `rail_forward`, `rail_dz`, and `yaw`.
 - **Left/right:** confirm the right Joy-Con on the left bar (and vice versa) is the layout you want. The Joy-Con stick ends up nearest the rider.
 - **Beam stiffness:** the beam is 8 × 14 mm and about 98 mm long. If button presses make it flex or twist, increase `beam_w`.
 - **Option 1** from the photo (mounted to the side of the hood) is not modelled yet.

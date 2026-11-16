@@ -22,10 +22,6 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
 | ![](joycon/garmin-grip/images/grip_top.png) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: rail and cleat fit tests passed |
 | ![](joycon/handlebar-mount/images/preview_iso_strap.png) | [**Handlebar mount**](joycon/handlebar-mount/): one Joy-Con per side, like Zwift Play | Clamps to the bar tops (strap or bolt clamp) | Prototype |
 
-### Coming later
-
-- Joy-Con 2 (Switch 2): attaches magnetically, needs its own designs.
-
 ## Download or build
 
 - **Ready-to-print files:** each [release](../../releases) has STL and 3MF
@@ -41,16 +37,6 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
   and refreshes the preview images. `tools/bundle.py --all` writes the
   single-file versions. Both need `openscad` on your PATH.
 
-## Printing
-
-- **Material:** PETG or ASA. Trainer setups get warm and sweaty, and PLA can
-  creep under a spring clip. PLA is fine for fit tests.
-- **Orientation:** keep the orientation in the release files. Mounts with
-  Joy-Con rails stand up so the rails run vertically. Printed flat, one rail
-  lip would start in mid-air.
-- **Supports:** none. Use a brim on tall parts.
-- **Strength:** 4+ walls, 25 %+ infill.
-
 ## Repo layout
 
 ```
@@ -60,12 +46,12 @@ joycon/              Nintendo Joy-Con (original Switch)
   handlebar-mount/     One Joy-Con per side, clamped to the bar
 lib/                 Shared OpenSCAD code (Joy-Con rail, Garmin cleat)
 assets/              Logo SVG
-docs/                Design notes and measured reference dimensions
-tools/               build.sh, bundle.py, targets.txt
+docs/                Design notes and measured dimensions
+tools/               build.sh, bundle.py, and targets.txt
 .github/workflows/   CI builds every model on pull requests; merges to main release
 ```
 
-Each mount folder has its `.scad` source, a README and preview images. STL and
+Each mount folder has its `.scad` source, a README, and preview images. STL and
 3MF files are build output: they are not committed, they are attached to
 releases.
 
@@ -76,23 +62,9 @@ with a new version builds every model and publishes a GitHub Release with all
 the STL/3MF files. Pull requests only build, as a check. Details in
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Credits
-
-Dimensions were measured from these community models (thank you!). Only
-measurements were taken: no third-party meshes or code are included here.
-
-- *Joycon Grip w/ Front Look LED Window* (by ecoiras and its remixes, including
-  HUSQY_'s narrower version): Joy-Con rail profile, splay and spacing
-- *DiTec case + Garmin connection* (DefMaker), *ReverseGarminCustomv2*, and a
-  cleat shared as *Shiny Allis-Bojo*: Garmin quarter-turn cleat geometry
-- [Cuttlephone](https://github.com/SiloCityLabs/Cuttlephone): early Joy-Con
-  rail reference
-
-Measured values and design reasoning: [docs/design-notes.md](docs/design-notes.md).
-
 ## Contributing and support
 
-Fit reports, ideas, bug reports and pull requests are welcome. See
+Fit reports, problem reports, ideas, and pull requests are welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for what to include and how changes are
 built and released, and please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -104,13 +76,13 @@ Support this project on [ko-fi](https://ko-fi.com/voltagesolutions)!
 
 Copyright © 2026 Voltage Solutions LLC.
 
-[CC BY-SA 4.0](LICENSE): you may use, change, print and sell these designs,
-as long as you credit this project and share your changed versions under the
-same license.
+[CC BY-SA 4.0](LICENSE.md): you may use, change, print, and share these
+designs, as long as you credit this project and share your changed versions
+under the same license.
 
 The VOLTAGE wordmark (`assets/voltage_wordmark.svg`, and the logo recessed into
 some designs) is a trademark of Voltage Solutions LLC and is not covered by
-this license. If you share or sell your own version of a design, set
+this license. If you share your own version of a design, set
 `logo = false` in the Customizer or replace `logo_file` with your own logo.
 
 This is an AI-assisted project, leveraging support from Anthropic's Claude.

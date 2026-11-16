@@ -1,6 +1,6 @@
 # Design notes
 
-Measured reference dimensions, library conventions and lessons learned. The
+Measured reference dimensions, library conventions, and lessons learned. The
 current defaults live in the library files. This page records where they came
 from.
 
