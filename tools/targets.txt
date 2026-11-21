@@ -1,0 +1,32 @@
+# Build manifest for tools/build.sh
+#
+# One target per line, fields separated by "|":
+#   scad path (relative to repo root) | output basename | outputs | defines | camera
+#
+#   outputs  comma list of: stl, 3mf, png
+#            stl/3mf go to build/ (git-ignored; published as release assets),
+#            png goes to <scad dir>/images/ (committed, used by the READMEs)
+#   defines  semicolon-separated OpenSCAD variable overrides, e.g.
+#            part="grip";print_orient=false     (may be empty)
+#   camera   OpenSCAD --camera value for PNGs, "tx,ty,tz,rx,ry,rz,dist"
+#            (may be empty = default view; the view is auto-centred)
+#   mode     optional, PNGs only: "render" (default, exact geometry) or
+#            "preview" (keeps colours, e.g. stand-in controllers)
+#
+# Lines starting with # are ignored.
+
+# ---- Joy-Con Garmin grip -------------------------------------------------
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_standard | stl,3mf | part="grip";print_orient=true;mount_style="standard" |
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_aero | stl,3mf | part="grip";print_orient=true;mount_style="aero" |
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_logo_inlay | stl,3mf | part="logo_inlay" |
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_swing_test_standard | stl,3mf | part="swing_test";mount_style="standard" |
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_swing_test_mid | stl,3mf | part="swing_test";mount_style="custom";cleat_y_frac=0.40 |
+joycon/garmin-grip/joycon_garmin_grip.scad | joycon_garmin_grip_swing_test_aero | stl,3mf | part="swing_test";mount_style="aero" |
+joycon/garmin-grip/joycon_garmin_grip.scad | grip_top           | png     | part="preview"                | 0,0,0,30,0,0,300   | preview
+joycon/garmin-grip/joycon_garmin_grip.scad | grip_bottom        | png     | part="grip";print_orient=false | 0,0,0,225,0,20,300
+joycon/garmin-grip/joycon_garmin_grip.scad | grip_print         | png     | part="grip";print_orient=true  | 0,0,0,75,0,25,300
+joycon/garmin-grip/joycon_garmin_grip.scad | logo_inlay         | png     | part="logo_inlay"             | 0,0,0,35,0,0,90
+
+# ---- Joy-Con fit tests ---------------------------------------------------------
+joycon/fit-tests/joycon_rail_test.scad  | joycon_rail_test  | stl,3mf,png | | 0,0,0,55,0,25,90
+joycon/fit-tests/garmin_cleat_test.scad | garmin_cleat_test | stl,3mf,png | | 0,0,0,55,0,25,110

@@ -1,0 +1,15 @@
+# Normalise line endings for text sources
+*.scad text eol=lf
+*.md   text eol=lf
+*.py   text eol=lf
+*.sh   text eol=lf
+*.txt  text eol=lf
+*.svg  text eol=lf
+
+# Model and image exports are binary: no diffs, no line-ending changes.
+# If the repo grows large, consider Git LFS for these:
+#   git lfs track "*.stl" "*.3mf"
+*.stl  binary
+*.3mf  binary
+*.png  binary
+*.jpg  binary
