@@ -1,15 +1,11 @@
 # Controller Cycling Mounts
 
-3D-printable mounts that put ordinary game controllers on a bike, so you can
-use them for shifting and steering in Zwift on an indoor trainer. They are the
-hardware side of [Game Controller for Zwift](https://github.com/VoltageSolutions/GameControllerForZwift),
-a Windows app that connects standard game controllers to Zwift.
+This repository contains 3D-printable mounts to attach video game controllers onto a bike. This enables you to use the controllers for virtual shifting and steering in apps like Zwift on an indoor trainer. This is the hardware complement to [Game Controller for Zwift](https://github.com/VoltageSolutions/GameControllerForZwift), my app that connects standard game controllers to Zwift.
 
-Every model is **OpenSCAD source**: use it as is, change the settings, or build
-your own mounts on the shared rail and cleat code.
+Every model is **OpenSCAD source**. You can use it as is, change the settings, or build
+your own mounts.
 
-**Just want to print?** Download the STL/3MF files from the
-[latest release](../../releases/latest).
+If you just want to print, download the STL/3MF files from the [latest release](../../releases/latest).
 
 ## Mounts
 
@@ -19,19 +15,13 @@ Start with the [Joy-Con guide](joycon/): print the two fit tests first.
 
 | | Mount | Attaches to | Status |
 | --- | --- | --- | --- |
-| ![](joycon/garmin-grip/images/grip_top.png) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: fit tests passed, aero version tested on a bike |
+| ![](joycon/garmin-grip/images/grip_mounted.jpg) | [**Garmin grip**](joycon/garmin-grip/): both Joy-Cons in one gamepad-style grip | Any Garmin quarter-turn mount (out-front, stem) | Ready: fit tests passed, aero version tested on a bike |
 
 ## Download or build
 
-- **Ready-to-print files:** each [release](../../releases) has STL and 3MF
-  files for every mount, already oriented for printing, plus single-file
-  `.scad` versions for MakerWorld's customizer.
-- **Customize in OpenSCAD** (2021.01 or newer):
-  1. Clone or download the whole repo. The models load the shared code from
-     `lib/` and `assets/` by relative path, so keep the folders together.
-  2. Open a mount's `.scad` file, then **Window → Customizer** to change
-     settings.
-  3. **F6** to render, then **File → Export**.
+- **Ready-to-print files:** each [release](../../releases) has `STL`, `3MF`, and `scad`
+  files for every mount.
+- **Customize in OpenSCAD:** make the print fit your needs.
 - **Build everything:** `tools/build.sh` writes all STL/3MF files to `build/`
   and refreshes the preview images. `tools/bundle.py --all` writes the
   single-file versions. Both need `openscad` on your PATH.
@@ -49,22 +39,11 @@ tools/               build.sh, bundle.py, and targets.txt
 .github/workflows/   CI builds every model on pull requests; merges to main release
 ```
 
-Each mount folder has its `.scad` source, a README, and preview images. STL and
-3MF files are build output: they are not committed, they are attached to
-releases.
-
-## Releases
-
-The version lives in the `VERSION` file. Merging a pull request into `main`
-with a new version builds every model and publishes a GitHub Release with all
-the STL/3MF files. Pull requests only build, as a check. Details in
-[CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## Contributing and support
 
-Fit reports, problem reports, ideas, and pull requests are welcome. See
+Please provide feedback about model fit! Issues and PRs are welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for what to include and how changes are
-built and released, and please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+built and released.
 
 ### Donate
 

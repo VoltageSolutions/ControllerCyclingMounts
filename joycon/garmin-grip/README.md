@@ -1,13 +1,19 @@
 # Joy-Con Garmin grip
 
-Holds two original Nintendo Switch Joy-Cons in a splayed "gamepad" layout,
-with a male Garmin quarter-turn cleat underneath. It clicks into any
+This grip holds two original Nintendo Switch Joy-Cons in a splayed "gamepad" layout
+with a Garmin quarter-turn cleat underneath. It clicks into any
 Garmin-compatible out-front or stem mount, so the controllers sit in front of
 the bars like a bike computer.
+
+IMPORTANT: I used black Bambu PLA filament and found using variable layer height resulted in an obvious change in the finish. I recommend using a consistent layer height throughout the print for a clean-looking result.
 
 | Top (with stand-in Joy-Cons) | Underside | Print orientation |
 | --- | --- | --- |
 | ![top](images/grip_top.png) | ![bottom](images/grip_bottom.png) | ![print](images/grip_print.png) |
+
+| Aero and standard grips printed | Aero grip mounted |
+| --- | --- |
+| <img src="images/grip_options.jpg" width="400"> | <img src="images/grip_mounted.jpg" width="400">  |
 
 ## Files
 
@@ -22,9 +28,9 @@ the bars like a bike computer.
 
 ## Fit it to your bike mount (check before printing)
 
-A Garmin mount locks with a quarter turn, so the whole grip has to swing
-around the cleat. Out-front mounts sit close to the bar and stem, and this grip
-is much bigger than a bike computer. Check your mount before printing:
+Garmin mounts lock with a quarter turn, so the whole grip has to swing
+around the cleat. Out-front mounts sit close to the bar and stem, and the grip
+is bigger than a bike computer. If you have an integrated mount or aero-style bars, check the mount before printing.
 
 ![clearance check](images/clearance_check.png)
 
@@ -76,15 +82,16 @@ is about 91 mm, which almost no mount clears, so always:
   until it clicks straight), then slide the Joy-Cons in.
   If it ends up sideways when locked, change `cleat_angle` to 90 and re-export.
 
-## Two-colour logo inlay (optional)
+## Two-color logo inlay (optional)
 
-The logo is recessed 1.2 mm so a second-colour inlay can sit flush in it, even
-on a single-colour printer. Release files: `joycon_garmin_grip_logo_inlay.stl`
+Voltage Solutions is providing this repo and the 3D prints included for free, licensed CC BY-SA 4.0: you may use, change, print, and share these designs, as long as you credit this project and share your changed versions under the same license.
+
+By default, I've included the Voltage logo recessed 1.2 mm into the print. You can print a second-color inlay and they will sit flush. Release files: `joycon_garmin_grip_logo_inlay.stl`
 / `.3mf` (seven letters, 1.2 mm thick).
 
 ![logo inlay](images/logo_inlay.png)
 
-1. Print the letters flat in the contrasting colour. They print face up, and
+1. Print the letters flat in the contrasting color. They print face up, and
    top-surface ironing gives them a smoother face. The letters are small, so
    add a brim (or skip ironing) to keep them from lifting off the plate.
 2. While they're still on the plate, press a strip of masking or painter's
